@@ -1,0 +1,33 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{preamble}[2020/15/11]
+\usepackage[utf8]{inputenc}
+
+\RequirePackage{amsmath}
+\RequirePackage{listings}
+\RequirePackage{amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{float}
+\pagestyle{fancy}
+\RequirePackage{enumitem}
+\RequirePackage[font=footnotesize,labelfont=bf]{caption}
+\RequirePackage{hyperref}
+\hypersetup{ 
+	frenchlinks=true,
+	colorlinks=false,
+	pdfborder= {0 0 0}
+	}
+\bibliographystyle{alpha}
+
+\newcommand{\vecd}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\dline}[1]{\underline{\underline{#1}}}
+
+\newcommand{\ivecd}[1]{% inline column vector from https://tex.stackexchange.com/questions/200507/inline-row-vectors-with-smallmatrix
+  \left(\begin{smallmatrix}#1 \end{smallmatrix}\right)%
+}
+
+% don't indent paragraphs
+\setlength{\parindent}{0pt}
