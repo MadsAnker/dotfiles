@@ -37,3 +37,8 @@ let g:vimtex_view_method = 'zathura'
 set spelllang=da
 " Only for tex files
 autocmd BufRead,BufNewFile *.tex setlocal spell
+
+" Use build dir
+let g:vimtex_compiler_latexmk = {
+            \ 'build_dir' : 'build',
+            \}
