@@ -37,7 +37,7 @@ endsnippet
 
 snippet "\\begin\{([a-zA-Z]+)\}" "beginend" r
 `!p snip.rv = '\\begin{'+match.group(1)+'}'`
-$1
+	$1
 `!p snip.rv = '\\end{'+match.group(1)+'}'`
 endsnippet
 
@@ -73,6 +73,18 @@ snippet \bs "backslash" iA
 \textbackslash $0
 endsnippet
 
+snippet itt "italic text" 
+\textit{$1} $0
+endsnippet
+
+snippet alphenum "enumerate with alphabetic indexes" A
+\begin{enumerate}[label=\alph*.]
+	\item
+		$1
+\end{enumerate}
+$0
+endsnippet
+
 #Templates
 snippet arttem "Article template" i
 \documentclass[12pt, a4paper]{article}
@@ -88,3 +100,4 @@ snippet arttem "Article template" i
 ${0}
 \end{document}
 endsnippet
+
