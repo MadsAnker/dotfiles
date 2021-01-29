@@ -40,5 +40,12 @@ autocmd BufRead,BufNewFile *.tex setlocal spell
 
 " Use build dir
 let g:vimtex_compiler_latexmk = {
-            \ 'build_dir' : 'build',
-            \}
+    \ 'options' : [
+    \   '-shell-escape',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \ 'build_dir': 'build',
+    \}
