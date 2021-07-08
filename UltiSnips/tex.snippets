@@ -1,3 +1,26 @@
+
+
+global !p
+
+##########################################################################
+# This part is stolen from						 #
+# https://vi.stackexchange.com/questions/18490/ultisnips-context-and-tex #
+##########################################################################
+
+texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
+texMathZones += ['texMathZone'+x for x in ['E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS']]
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+def isMath():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	if not set(texIgnoreMathZoneIds).isdisjoint(synstackids):
+		return False
+	return not set(texMathZoneIds).isdisjoint(synstackids)
+endglobal
+
 #Fractions
 
 #Most are stolen from https://castel.dev/post/lecture-notes-1/
@@ -27,6 +50,7 @@ endsnippet
 
 #Shortcuts
 
+context "isMath()"
 snippet => "Rightarrow" iA
 \Rightarrow
 endsnippet
@@ -35,8 +59,8 @@ snippet * "cdot" i
  \cdot 
 endsnippet
 
-snippet "\\begin\{([a-zA-Z]+)\}" "beginend" r
-`!p snip.rv = '\\begin{'+match.group(1)+'}'`
+snippet "\\begin\{([a-zA-Z]+)\}((?:\[.*?\])*)" "beginend" r
+`!p snip.rv = '\\begin{'+match.group(1)+'}'+match.group(2)`
 	$1
 `!p snip.rv = '\\end{'+match.group(1)+'}'`
 endsnippet
@@ -77,12 +101,47 @@ snippet itt "italic text"
 \textit{$1} $0
 endsnippet
 
-snippet alphenum "enumerate with alphabetic indexes" A
+snippet alphenum "enumerate with alphabetic indexes"
+
 \begin{enumerate}[label=\alph*.]
 	\item
 		$1
 \end{enumerate}
 $0
+endsnippet
+
+snippet itemize "Itemize"
+
+\begin{itemize}
+	\item
+		$0
+\end{itemize}
+endsnippet
+
+snippet sec "Unnumbered section"
+\section*{$1}
+$0
+endsnippet
+
+snippet secn "Numbered section*"
+\section{$1}
+$0
+endsnippet
+
+snippet enum "Enumerate environment"
+
+\begin{enumerate}[label=$1]
+	\item
+		$0
+\end{enumerate}
+endsnippet
+
+#misc
+snippet today "Today's date" i
+`!p
+import datetime
+snip.rv = datetime.datetime.now().strftime("%d %b %Y")
+`
 endsnippet
 
 #Templates
@@ -109,4 +168,23 @@ snippet figure "Figure" i
 	\caption{$2}
 \end{figure}
 $0
+endsnippet
+
+snippet coordsys "Coordinate system" 
+\begin{figure}[h!]
+	\begin{center}
+		\begin{tikzpicture}
+			\coordinate (origo) at (0,0);
+			\draw[->] (origo) -- (10, 0);
+			\draw[->] (origo) -- (0, 10);
+			$1
+		\end{tikzpicture}
+	\end{center}
+	\caption{}
+\end{figure}
+$0
+endsnippet
+
+snippet consth "Planck's constant" iA
+6.626 \cdot 10^{-34} \frac{m^2 \cdot kg}{s}
 endsnippet

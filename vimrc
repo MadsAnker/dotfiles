@@ -14,7 +14,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'lervag/vimtex'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'SirVer/ultisnips'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'peitalin/vim-jsx-typescript'
 call vundle#end() 
+
+" Install tsserver for COC
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ ]
 
 " Ultisnip config
 let g:UltiSnipsExpandTrigger="<tab>"		
