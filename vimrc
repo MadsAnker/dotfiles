@@ -1,12 +1,5 @@
 set nocompatible	" no idea
-set autoindent		" auto indent
-set smartindent		" smart indentation for c-like languages
-syntax enable		" enable syntax highlight
-set number		" line numbers
-set hidden		" enable buffers to be 'hidden' see :help hidden
-set laststatus=2	" always show the status line
-set backspace=indent,eol,start	" always allow backspace see https://vi.stackexchange.com/a/2163
-filetype plugin indent on
+filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -16,7 +9,11 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'SirVer/ultisnips'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'preservim/nerdtree'
+Plugin 'lsdr/monokai'
+Plugin 'sheerun/vim-polyglot'
 call vundle#end() 
+
 
 " Install tsserver for COC
 let g:coc_global_extensions = [
@@ -41,7 +38,7 @@ let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
 
 " Spelling
-set spelllang=da
+" set spelllang=da
 " Only for tex files
 autocmd BufRead,BufNewFile *.tex setlocal spell
 
@@ -56,3 +53,16 @@ let g:vimtex_compiler_latexmk = {
     \ ],
     \ 'build_dir': 'build',
     \}
+
+set autoindent		" auto indent
+set smartindent		" smart indentation for c-like languages
+syntax enable		" enable syntax highlight
+set number		" line numbers
+set hidden		" enable buffers to be 'hidden' see :help hidden
+set laststatus=2	" always show the status line
+set backspace=indent,eol,start	" always allow backspace see https://vi.stackexchange.com/a/2163
+set relativenumber
+filetype plugin indent on
+set termguicolors
+colorscheme monokai
+set term=xterm-256color
