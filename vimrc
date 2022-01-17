@@ -7,11 +7,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'lervag/vimtex'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'SirVer/ultisnips'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
 Plugin 'peitalin/vim-jsx-typescript'
-Plugin 'preservim/nerdtree'
-Plugin 'lsdr/monokai'
+Plugin 'preservim/nerdtree' 
+Plugin 'lsdr/monokai' 
 Plugin 'sheerun/vim-polyglot'
+Plugin 'rhysd/vim-healthcheck'
+Plugin 'honza/vim-snippets'
+Plugin 'fidian/hexmode'
 call vundle#end() 
 
 
@@ -66,3 +69,10 @@ filetype plugin indent on
 set termguicolors
 colorscheme monokai
 set term=xterm-256color
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+silent! nmap <C-c> :NERDTreeToggle<CR>
+
+autocmd BufNewFile,BufRead Makefile setlocal noexpandtab

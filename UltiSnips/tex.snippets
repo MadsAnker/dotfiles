@@ -74,7 +74,7 @@ snippet dm "display math" A
 \[
 	$1
 \]
-$0
+$0 
 endsnippet
 
 snippet ^ "superscript" i
@@ -187,4 +187,31 @@ endsnippet
 
 snippet consth "Planck's constant" iA
 6.626 \cdot 10^{-34} \frac{m^2 \cdot kg}{s}
+endsnippet
+
+snippet prestem "Presentation template"
+\documentclass{beamer}
+\usetheme{Boadilla}
+
+\title{$1}
+\subtitle{$2}
+\author{Mads Anker Nielsen}
+\institute{SDU}
+\date{\today}
+
+\begin{document}
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Outline}
+	\tableofcontents
+\end{frame}
+
+\begin{frame}
+	$0
+\end{frame}
+
+\end{document}
 endsnippet
