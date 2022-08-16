@@ -15,6 +15,10 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'rhysd/vim-healthcheck'
 Plugin 'honza/vim-snippets'
 Plugin 'fidian/hexmode'
+Plugin 'chriskempson/base16-vim'
+Plugin 'nbouscal/vim-stylish-haskell'
+" Plugin 'raghur/vim-ghost'
+" Plugin 'roxma/vim-hug-neovim-rpc'
 call vundle#end() 
 
 
@@ -69,10 +73,19 @@ filetype plugin indent on
 set termguicolors
 colorscheme monokai
 set term=xterm-256color
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set shiftround
 silent! nmap <C-c> :NERDTreeToggle<CR>
+let g:NERDTreeIgnore = ['.*\.class$', '.*\.o$']
+set clipboard=unnamedplus
+
 
 autocmd BufNewFile,BufRead Makefile setlocal noexpandtab
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256          " Remove this line if not necessary
+  source ~/.vimrc_background
+endif
